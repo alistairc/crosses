@@ -1,5 +1,4 @@
-﻿
-namespace Crosses.Console;
+﻿namespace Crosses.Console;
 
 using System;
     
