@@ -1,13 +1,12 @@
 ﻿
-namespace Crosses.Console
-{
-    using System;
+namespace Crosses.Console;
+
+using System;
     
-    class Program
+class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        Console.WriteLine("Hello World!");
     }
 }

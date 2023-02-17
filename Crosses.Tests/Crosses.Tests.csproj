@@ -1,9 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <OutputType>Library</OutputType>
+
+    <LangVersion>latest</LangVersion>
+
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
