@@ -3,9 +3,9 @@ namespace Crosses.Tests;
 class BoardTests
 {
     [Test]
-    public void NewGame()
+    public void InitialBoard()
     {
-        var board = Game.Start();
+        var board = new Board();
         board.StateAt(0, 0).ShouldBe(SquareState.Blank);
         board.StateAt(0, 1).ShouldBe(SquareState.Blank);
         board.StateAt(0, 2).ShouldBe(SquareState.Blank);
@@ -20,7 +20,7 @@ class BoardTests
     [Test]
     public void RemembersMoves()
     {
-        var board = Game.Start()
+        var board = new Board()
             .MoveAt(0, 0, Player.O)
             .MoveAt(1, 1, Player.X);
         

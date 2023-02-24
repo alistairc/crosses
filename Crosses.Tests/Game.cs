@@ -1,9 +1,24 @@
 namespace Crosses.Tests;
 
-static class Game
+//TODO: Drive out some of this, tests no longer use it 
+record Game
 {
-    public static Board Start()
+    public Board Board { get; }
+    public Player NextTurn { get; }
+
+    Game(Board board, Player nextTurn)
     {
-        return new Board();
+        Board = board;
+        NextTurn = nextTurn;
+    }
+
+    public static Game Start()
+    {
+        return new Game(new Board(), Player.O);
+    }
+
+    public Game MoveAt(int x, int i1)
+    {
+        return null;
     }
 }
