@@ -27,4 +27,12 @@ class GameTests
         gameState1.NextTurn.ShouldBe(Player.X);
         gameState2.NextTurn.ShouldBe(Player.O);
     }
+
+    [Test]
+    public void ShouldIgnoreMovesNotInBlanks()
+    {
+        var gameState1 = Game.Start().MoveAt(1, 1);
+        var gameState2 = gameState1.MoveAt(1, 1);
+        gameState2.ShouldBe(gameState1);
+    }
 }

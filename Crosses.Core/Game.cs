@@ -9,10 +9,15 @@ public record Game(Board Board, Player NextTurn)
 
     public Game MoveAt(int x, int y)
     {
-        return this with
+        if (Board.GetSquareState(x, y) == SquareState.Blank)
         {
-            Board = Board.SetSquareState(x, y, NextTurn),
-            NextTurn = Player.Other(NextTurn)
-        };
+            return this with
+            {
+                Board = Board.SetSquareState(x, y, NextTurn),
+                NextTurn = Player.Other(NextTurn)
+            };
+        }
+
+        return this;
     }
 }
