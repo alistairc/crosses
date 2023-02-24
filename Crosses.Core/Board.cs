@@ -25,7 +25,14 @@ public record Board
     {
         return x + y * 3;
     }
-   
+
+    public override string ToString()
+    {
+        return $"{State[0]}{State[1]}{State[2]}\n" +
+               $"{State[3]}{State[4]}{State[5]}\n" +
+               $"{State[6]}{State[7]}{State[8]}";
+    }
+
     public virtual bool Equals(Board? other)
     {
         //Really annoying to have to do this, but Immutable array doesn't implement value equality
