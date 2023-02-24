@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
 
-    <IsPackable>false</IsPackable>
+        <IsPackable>false</IsPackable>
 
-    <OutputType>Library</OutputType>
+        <OutputType>Library</OutputType>
 
-    <LangVersion>latest</LangVersion>
+        <LangVersion>latest</LangVersion>
 
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="nunit" Version="3.10.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
-    <PackageReference Include="Shouldly" Version="4.1.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="nunit" Version="3.10.1"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="3.10.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2"/>
+        <PackageReference Include="Shouldly" Version="4.1.0"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Crosses.Console\Crosses.Console.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Crosses.Core\Crosses.Core.csproj"/>
+    </ItemGroup>
 
 </Project>

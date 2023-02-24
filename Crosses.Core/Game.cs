@@ -1,16 +1,16 @@
-namespace Crosses.Tests;
+namespace Crosses.Core;
 
 //TODO: Drive out some of this, tests no longer use it 
-record Game
+public record Game
 {
-    public Board Board { get; }
-    public Player NextTurn { get; }
-
     Game(Board board, Player nextTurn)
     {
         Board = board;
         NextTurn = nextTurn;
     }
+
+    public Board Board { get; }
+    public Player NextTurn { get; }
 
     public static Game Start()
     {

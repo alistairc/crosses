@@ -1,8 +1,6 @@
-using System;
+namespace Crosses.Core;
 
-namespace Crosses.Tests;
-
-record Board
+public record Board
 {
     SquareState[,] State { get; init; } = new SquareState[3, 3];
 
