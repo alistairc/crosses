@@ -6,19 +6,19 @@ public record Board
 {
     public static readonly Board Blank = new();
 
-    ImmutableArray<SquareState> NewState { get; init; } = ImmutableArray.CreateRange(Enumerable.Repeat(SquareState.Blank, 9));
+    ImmutableArray<SquareState> State { get; init; } = ImmutableArray.CreateRange(Enumerable.Repeat(SquareState.Blank, 9));
 
     public SquareState GetSquareState(int x, int y)
     {
-        return NewState[IndexForCoord(x, y)];
+        return State[IndexForCoord(x, y)];
     }
 
     public Board SetSquareState(int x, int y, Player player)
     {
         var index = IndexForCoord(x, y);
-        var mutable = NewState.ToBuilder();
+        var mutable = State.ToBuilder();
         mutable[index] = StateFromPlayer(player);
-        return new Board { NewState = mutable.ToImmutable() };
+        return new Board { State = mutable.ToImmutable() };
     }
 
     static int IndexForCoord(int x, int y)
@@ -40,12 +40,12 @@ public record Board
     {
         //Really annoying to have to do this, but Immutable array doesn't implement value equality
         //We'll need remember to update this if we add other members
-        return other != null && Enumerable.SequenceEqual(other.NewState, NewState);
+        return other != null && Enumerable.SequenceEqual(other.State, State);
     }
 
     public override int GetHashCode()
     {
-        return NewState.Aggregate(
+        return State.Aggregate(
             typeof(Board).GetHashCode(),
             (i, state) => i ^ state.GetHashCode()
         );
