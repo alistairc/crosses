@@ -30,4 +30,13 @@ class BoardTests
         board.StateAt(1, 1).ShouldBe(SquareState.Cross);
         board.StateAt(2, 2).ShouldBe(SquareState.Blank);
     }
+
+    [Test]
+    public void ShouldSupportValueEquality()
+    {
+        (new Board()).ShouldBe(new Board());
+        (new Board()).ShouldBe(Board.Blank);
+        (new Board().MoveAt(1,1,Player.O)).ShouldNotBe(Board.Blank);
+        (new Board() == null).ShouldBeFalse();
+    }
 }

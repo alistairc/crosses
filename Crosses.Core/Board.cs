@@ -21,6 +21,13 @@ public record Board
         return new Board { NewState = mutable.ToImmutable() };
     }
 
+    public virtual bool Equals(Board? other)
+    {
+        //Really annoying to have to do this, but Immutable array doesn't implement value equality
+        //We'll need remember to update this if we add other members
+        return other != null && Enumerable.SequenceEqual(other.NewState, NewState);
+    }
+
     static int IndexForCoord(int x, int y)
     {
         return x + y * 3;
