@@ -2,7 +2,7 @@
 
 namespace Crosses.Tests;
 
-class GameTest
+class GameTests
 {
     [Test]
     public void StartingAGame_ShouldHaveABlankBoardAndAnInitialPlayer()
