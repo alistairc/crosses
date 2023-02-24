@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.ComTypes;
 using Crosses.Core;
 
 namespace Crosses.Tests;
@@ -35,9 +34,9 @@ class BoardTests
     [Test]
     public void ShouldSupportValueEquality()
     {
-        (new Board()).ShouldBe(new Board());
-        (new Board()).ShouldBe(Board.Blank);
-        (new Board().SetSquareState(1,1,Player.O)).ShouldNotBe(Board.Blank);
+        new Board().ShouldBe(new Board());
+        new Board().ShouldBe(Board.Blank);
+        new Board().SetSquareState(1, 1, Player.O).ShouldNotBe(Board.Blank);
         (new Board() == null).ShouldBeFalse();
     }
 
@@ -45,10 +44,10 @@ class BoardTests
     public void ShouldStringifyNicely()
     {
         Board.Blank
-            .SetSquareState(0,0,Player.O)
-            .SetSquareState(0,1, Player.X)
-            .SetSquareState(1,1, Player.O)
-            .SetSquareState(2,2, Player.X)
+            .SetSquareState(0, 0, Player.O)
+            .SetSquareState(0, 1, Player.X)
+            .SetSquareState(1, 1, Player.O)
+            .SetSquareState(2, 2, Player.X)
             .ToString()
             .ShouldBe("O  \nXO \n  X");
     }

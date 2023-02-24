@@ -6,9 +6,6 @@ public class SquareState
     public static readonly SquareState Nought = new("O");
     public static readonly SquareState Cross = new("X");
 
-    public static SquareState FromPlayer(Player player)
-        => player.Match(noughtsValue: Nought, crossValue: Cross);
-
     readonly string _name;
 
     //closed set
@@ -17,5 +14,13 @@ public class SquareState
         _name = name;
     }
 
-    public override string ToString() => _name;
+    public static SquareState FromPlayer(Player player)
+    {
+        return player.Match(Nought, Cross);
+    }
+
+    public override string ToString()
+    {
+        return _name;
+    }
 }

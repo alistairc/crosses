@@ -6,7 +6,15 @@ public record Board
 {
     public static readonly Board Blank = new();
 
-    ImmutableArray<SquareState> State { get; init; } = ImmutableArray.CreateRange(Enumerable.Repeat(SquareState.Blank, 9));
+    ImmutableArray<SquareState> State { get; init; } =
+        ImmutableArray.CreateRange(Enumerable.Repeat(SquareState.Blank, 9));
+
+    public virtual bool Equals(Board? other)
+    {
+        //Really annoying to have to do this, but Immutable array doesn't implement value equality
+        //We'll need remember to update this if we add other members
+        return other != null && Enumerable.SequenceEqual(other.State, State);
+    }
 
     public SquareState GetSquareState(int x, int y)
     {
@@ -31,13 +39,6 @@ public record Board
         return $"{State[0]}{State[1]}{State[2]}\n" +
                $"{State[3]}{State[4]}{State[5]}\n" +
                $"{State[6]}{State[7]}{State[8]}";
-    }
-
-    public virtual bool Equals(Board? other)
-    {
-        //Really annoying to have to do this, but Immutable array doesn't implement value equality
-        //We'll need remember to update this if we add other members
-        return other != null && Enumerable.SequenceEqual(other.State, State);
     }
 
     public override int GetHashCode()

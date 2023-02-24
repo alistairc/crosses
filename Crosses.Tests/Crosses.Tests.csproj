@@ -13,14 +13,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="nunit" Version="3.10.1" />
-        <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
-        <PackageReference Include="Shouldly" Version="4.1.0" />
+        <PackageReference Include="nunit" Version="3.10.1"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="3.10.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2"/>
+        <PackageReference Include="Shouldly" Version="4.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Crosses.Core\Crosses.Core.csproj" />
+        <ProjectReference Include="..\Crosses.Core\Crosses.Core.csproj"/>
     </ItemGroup>
 
 </Project>
