@@ -28,12 +28,11 @@ public record Board
     
     static SquareState StateFromPlayer(Player player)
     {
-        return player switch
-        {
-            Player.O => SquareState.Nought,
-            Player.X => SquareState.Cross,
-            _ => throw new ArgumentOutOfRangeException(nameof(player), player, null)
-        };
+        if (player == Player.O)
+            return SquareState.Nought;
+        if (player == Player.X)
+            return SquareState.Cross;
+        throw new ArgumentOutOfRangeException(nameof(player), player, null);
     }
     
     public virtual bool Equals(Board? other)

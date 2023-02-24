@@ -12,17 +12,7 @@ public record Game(Board Board, Player NextTurn)
         return this with
         {
             Board = Board.SetSquareState(x, y, NextTurn),
-            NextTurn = OtherPlayer(NextTurn)
-        };
-    }
-
-    static Player OtherPlayer(Player currentPlayer)
-    {
-        return currentPlayer switch
-        {
-            Player.O => Player.X,
-            Player.X => Player.O,
-            _ => throw new ArgumentOutOfRangeException(nameof(currentPlayer), currentPlayer, null)
+            NextTurn = Player.Other(NextTurn)
         };
     }
 }
