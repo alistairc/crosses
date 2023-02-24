@@ -4,7 +4,7 @@ namespace Crosses.Tests;
 
 record Board
 {
-    private SquareState[,] State { get; init; } = new SquareState[3, 3];
+    SquareState[,] State { get; init; } = new SquareState[3, 3];
 
     public SquareState StateAt(int x, int y)
     {
@@ -18,7 +18,7 @@ record Board
         return new Board { State = newState };
     }
 
-    private static SquareState StateFromPlayer(Player player)
+    static SquareState StateFromPlayer(Player player)
     {
         return player switch
         {

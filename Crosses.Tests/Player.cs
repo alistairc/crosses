@@ -1,6 +1,6 @@
 namespace Crosses.Tests;
 
-public enum Player
+enum Player
 {
     O,
     X

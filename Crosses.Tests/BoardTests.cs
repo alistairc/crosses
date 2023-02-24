@@ -1,6 +1,6 @@
 namespace Crosses.Tests;
 
-public class BoardTests
+class BoardTests
 {
     [Test]
     public void NewGame()
