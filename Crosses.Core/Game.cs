@@ -1,24 +1,28 @@
 namespace Crosses.Core;
 
-//TODO: Drive out some of this, tests no longer use it 
-public record Game
+public record Game(Board Board, Player NextTurn)
 {
-    Game(Board board, Player nextTurn)
-    {
-        Board = board;
-        NextTurn = nextTurn;
-    }
-
-    public Board Board { get; }
-    public Player NextTurn { get; }
-
     public static Game Start()
     {
         return new Game(new Board(), Player.O);
     }
 
-    public Game MoveAt(int x, int i1)
+    public Game MoveAt(int x, int y)
     {
-        return null;
+        return this with
+        {
+            Board = Board.SetState(x, y, NextTurn),
+            NextTurn = OtherPlayer(NextTurn)
+        };
+    }
+
+    static Player OtherPlayer(Player currentPlayer)
+    {
+        return currentPlayer switch
+        {
+            Player.O => Player.X,
+            Player.X => Player.O,
+            _ => throw new ArgumentOutOfRangeException(nameof(currentPlayer), currentPlayer, null)
+        };
     }
 }

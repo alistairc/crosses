@@ -23,8 +23,8 @@ class BoardTests
     public void ShouldRememberMoves()
     {
         var board = new Board()
-            .MoveAt(0, 0, Player.O)
-            .MoveAt(1, 1, Player.X);
+            .SetState(0, 0, Player.O)
+            .SetState(1, 1, Player.X);
 
         board.StateAt(0, 0).ShouldBe(SquareState.Nought);
         board.StateAt(1, 1).ShouldBe(SquareState.Cross);
@@ -36,7 +36,7 @@ class BoardTests
     {
         (new Board()).ShouldBe(new Board());
         (new Board()).ShouldBe(Board.Blank);
-        (new Board().MoveAt(1,1,Player.O)).ShouldNotBe(Board.Blank);
+        (new Board().SetState(1,1,Player.O)).ShouldNotBe(Board.Blank);
         (new Board() == null).ShouldBeFalse();
     }
 }

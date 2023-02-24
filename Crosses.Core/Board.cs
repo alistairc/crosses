@@ -13,7 +13,7 @@ public record Board
         return NewState[IndexForCoord(x, y)];
     }
 
-    public Board MoveAt(int x, int y, Player player)
+    public Board SetState(int x, int y, Player player)
     {
         var index = IndexForCoord(x, y);
         var mutable = NewState.ToBuilder();
@@ -26,6 +26,14 @@ public record Board
         //Really annoying to have to do this, but Immutable array doesn't implement value equality
         //We'll need remember to update this if we add other members
         return other != null && Enumerable.SequenceEqual(other.NewState, NewState);
+    }
+
+    public override int GetHashCode()
+    {
+        return NewState.Aggregate(
+            typeof(Board).GetHashCode(),
+            (i, state) => i ^ state.GetHashCode()
+        );
     }
 
     static int IndexForCoord(int x, int y)
