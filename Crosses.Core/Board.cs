@@ -17,7 +17,7 @@ public record Board
     {
         var index = IndexForCoord(x, y);
         var mutable = State.ToBuilder();
-        mutable[index] = StateFromPlayer(player);
+        mutable[index] = SquareState.FromPlayer(player);
         return new Board { State = mutable.ToImmutable() };
     }
 
@@ -25,16 +25,7 @@ public record Board
     {
         return x + y * 3;
     }
-    
-    static SquareState StateFromPlayer(Player player)
-    {
-        if (player == Player.O)
-            return SquareState.Nought;
-        if (player == Player.X)
-            return SquareState.Cross;
-        throw new ArgumentOutOfRangeException(nameof(player), player, null);
-    }
-    
+   
     public virtual bool Equals(Board? other)
     {
         //Really annoying to have to do this, but Immutable array doesn't implement value equality

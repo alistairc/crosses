@@ -2,6 +2,14 @@ namespace Crosses.Core;
 
 public class Player
 {
+    public static readonly Player O = new("O");
+    public static readonly Player X = new("X");
+
+    public static Player Other(Player currentPlayer)
+    {
+        return currentPlayer.Match(noughtsValue: X, crossValue: O);
+    }
+
     readonly string _name;
 
     //Closed set
@@ -12,15 +20,8 @@ public class Player
 
     public override string ToString() => _name;
 
-    public static readonly Player O = new("O");
-    public static readonly Player X = new("X");
-
-    public static Player Other(Player currentPlayer)
+    public T Match<T>(T noughtsValue, T crossValue)
     {
-        if (currentPlayer == Player.O)
-            return Player.X;
-        if (currentPlayer == Player.X)
-            return Player.O;
-        throw new ArgumentOutOfRangeException(nameof(currentPlayer), currentPlayer, null);
+        return this == O ? noughtsValue : crossValue;
     }
 }
