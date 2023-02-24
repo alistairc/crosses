@@ -5,7 +5,7 @@ namespace Crosses.Tests;
 class BoardTests
 {
     [Test]
-    public void InitialBoard()
+    public void InitialBoard_ShouldBeBlank()
     {
         var board = new Board();
         board.StateAt(0, 0).ShouldBe(SquareState.Blank);
@@ -20,7 +20,7 @@ class BoardTests
     }
 
     [Test]
-    public void RemembersMoves()
+    public void ShouldRememberMoves()
     {
         var board = new Board()
             .MoveAt(0, 0, Player.O)
