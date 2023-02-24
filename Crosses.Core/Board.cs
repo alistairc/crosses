@@ -8,32 +8,17 @@ public record Board
 
     ImmutableArray<SquareState> NewState { get; init; } = ImmutableArray.CreateRange(Enumerable.Repeat(SquareState.Blank, 9));
 
-    public SquareState StateAt(int x, int y)
+    public SquareState GetSquareState(int x, int y)
     {
         return NewState[IndexForCoord(x, y)];
     }
 
-    public Board SetState(int x, int y, Player player)
+    public Board SetSquareState(int x, int y, Player player)
     {
         var index = IndexForCoord(x, y);
         var mutable = NewState.ToBuilder();
         mutable[index] = StateFromPlayer(player);
         return new Board { NewState = mutable.ToImmutable() };
-    }
-
-    public virtual bool Equals(Board? other)
-    {
-        //Really annoying to have to do this, but Immutable array doesn't implement value equality
-        //We'll need remember to update this if we add other members
-        return other != null && Enumerable.SequenceEqual(other.NewState, NewState);
-    }
-
-    public override int GetHashCode()
-    {
-        return NewState.Aggregate(
-            typeof(Board).GetHashCode(),
-            (i, state) => i ^ state.GetHashCode()
-        );
     }
 
     static int IndexForCoord(int x, int y)
@@ -49,5 +34,20 @@ public record Board
             Player.X => SquareState.Cross,
             _ => throw new ArgumentOutOfRangeException(nameof(player), player, null)
         };
+    }
+    
+    public virtual bool Equals(Board? other)
+    {
+        //Really annoying to have to do this, but Immutable array doesn't implement value equality
+        //We'll need remember to update this if we add other members
+        return other != null && Enumerable.SequenceEqual(other.NewState, NewState);
+    }
+
+    public override int GetHashCode()
+    {
+        return NewState.Aggregate(
+            typeof(Board).GetHashCode(),
+            (i, state) => i ^ state.GetHashCode()
+        );
     }
 }

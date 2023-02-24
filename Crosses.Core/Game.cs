@@ -11,7 +11,7 @@ public record Game(Board Board, Player NextTurn)
     {
         return this with
         {
-            Board = Board.SetState(x, y, NextTurn),
+            Board = Board.SetSquareState(x, y, NextTurn),
             NextTurn = OtherPlayer(NextTurn)
         };
     }
