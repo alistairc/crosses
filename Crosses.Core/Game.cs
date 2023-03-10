@@ -2,6 +2,8 @@ namespace Crosses.Core;
 
 public record Game(Board Board, Player NextTurn)
 {
+    public record InvalidMove(Player Player, int X, int Y);
+    
     public static Game Start()
     {
         return new Game(new Board(), Player.O);
