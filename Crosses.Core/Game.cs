@@ -7,15 +7,15 @@ public record Game(Board Board, Player NextTurn)
         return new Game(new Board(), Player.O);
     }
 
-    public Game MoveAt(int x, int y)
+    public MoveResult MoveAt(int x, int y)
     {
         if (Board.GetSquareState(x, y) == SquareState.Blank)
-            return this with
+            return MoveResult.Success(this with
             {
                 Board = Board.SetSquareState(x, y, NextTurn),
                 NextTurn = Player.Other(NextTurn)
-            };
+            });
 
-        return this;
+        return MoveResult.NotBlank(this);
     }
 }

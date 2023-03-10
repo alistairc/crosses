@@ -8,13 +8,13 @@ public class GameplayTests
     public void PlayingACompleteGame()
     {
         var result = Game.Start().Print()
-                .MoveAt(0, 0).Print()
-                .MoveAt(2, 2).Print()
-                .MoveAt(2, 0).Print()
-                .MoveAt(1, 0).Print()
-                .MoveAt(0, 2).Print()
-                .MoveAt(0, 1).Print()
-                .MoveAt(1, 1).Print()
+                .MoveAt(0, 0).Game.Print()
+                .MoveAt(2, 2).Game.Print()
+                .MoveAt(2, 0).Game.Print()
+                .MoveAt(1, 0).Game.Print()
+                .MoveAt(0, 2).Game.Print()
+                .MoveAt(0, 1).Game.Print()
+                .MoveAt(1, 1).Game.Print()
             ;
 
         //TODO: Need to implement winning
