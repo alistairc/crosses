@@ -29,6 +29,11 @@ public record Board
         return new Board { State = mutable.ToImmutable() };
     }
 
+    public bool IsFull()
+    {
+        return !State.Any(square => square == SquareState.Blank);
+    }
+
     static int IndexForCoord(int x, int y)
     {
         return x + y * 3;

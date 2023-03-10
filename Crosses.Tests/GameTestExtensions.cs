@@ -8,7 +8,10 @@ static class GameTestExtensions
     public static Game Print(this Game game)
     {
         Console.WriteLine(game.Board);
-        Console.WriteLine($"Next player: {game.NextTurn}");
+        Console.WriteLine(game.State.Match(
+            inProgress => $"Next player: {inProgress.NextTurn}",
+            _ => "Game over"
+        ));
         return game;
     }
 }
