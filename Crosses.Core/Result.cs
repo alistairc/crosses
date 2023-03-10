@@ -7,25 +7,25 @@ public record Result<TSuccess, TFailure>
     }
 
     bool IsSuccess { get; init; }
-    TSuccess SuccessResult { get; init; }
-    TFailure FailureResult { get; init; }
+    TSuccess SuccessResult { get; init; } = default!;
+    TFailure FailureResult { get; init; } = default!;
 
     public static Result<TSuccess, TFailure> Success(TSuccess result)
     {
-        return new()
+        return new Result<TSuccess, TFailure>
         {
             IsSuccess = true,
             SuccessResult = result,
-            FailureResult = default
+            FailureResult = default!
         };
     }
 
     public static Result<TSuccess, TFailure> Failure(TFailure result)
     {
-        return new()
+        return new Result<TSuccess, TFailure>
         {
             IsSuccess = false,
-            SuccessResult = default,
+            SuccessResult = default!,
             FailureResult = result
         };
     }

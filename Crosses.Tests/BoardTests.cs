@@ -37,6 +37,8 @@ class BoardTests
         new Board().ShouldBe(new Board());
         new Board().ShouldBe(Board.Blank);
         new Board().SetSquareState(1, 1, Player.O).ShouldNotBe(Board.Blank);
+        
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
         (new Board() == null).ShouldBeFalse();
     }
 
