@@ -1,6 +1,4 @@
-﻿using Crosses.Core;
-
-namespace Crosses.Tests;
+﻿namespace Crosses.Tests;
 
 static class ResultTestExtensions
 {

@@ -1,5 +1,3 @@
-using Crosses.Core;
-
 namespace Crosses.Tests;
 
 class BoardTests
