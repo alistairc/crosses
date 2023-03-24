@@ -28,7 +28,7 @@ class GameTests
     }
 
     [Test]
-    public void ShouldKnowWhenGameIsComplete()
+    public void ShouldKnowWhenGameIsCompleteBecauseTheBoardIsFull()
     {
         var game = Game.Start()
             .MoveAt(0, 0).ShouldSucceed()
@@ -42,6 +42,22 @@ class GameTests
             .MoveAt(2, 2).ShouldSucceed();
 
         game.State.ShouldBe(GameState.Complete);
+    }
+
+    static readonly Player[] BothPlayers = { Player.O, Player.X };
+
+
+    [TestCaseSource(nameof(BothPlayers))]
+    public void ShouldKnowWhenAPlayerHasWon(Player initialPlayer)
+    {
+        var completeGame = new Game(Board.Blank, GameState.InProgress(initialPlayer))
+            .MoveAt(0, 0).ShouldSucceed()
+            .MoveAt(0, 1).ShouldSucceed()
+            .MoveAt(1, 0).ShouldSucceed()
+            .MoveAt(1, 1).ShouldSucceed()
+            .MoveAt(2, 0).ShouldSucceed();
+
+        completeGame.State.ShouldBe(GameState.Won(initialPlayer));
     }
 
     [Test]

@@ -9,7 +9,8 @@ static class GameTestExtensions
         Console.WriteLine(game.Board);
         Console.WriteLine(game.State.Match(
             inProgress => $"Next player: {inProgress.NextTurn}",
-            _ => "Game over"
+            onComplete: _ => "Game over",
+            won => $"Winner: {won.Winner}"
         ));
         return game;
     }
