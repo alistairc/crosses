@@ -1,26 +1,43 @@
 namespace Crosses.Core;
 
-public class SquareState
+public abstract record SquareState
 {
-    public static readonly SquareState Blank = new(" ");
-    public static readonly SquareState Nought = new("O");
-    public static readonly SquareState Cross = new("X");
+    public static readonly SquareState Blank = new BlankState();
 
-    readonly string _name;
+    public static SquareState Filled(Player player) => new FilledState(player);
 
     //closed set
-    SquareState(string name)
+    SquareState()
     {
-        _name = name;
     }
+
+    public abstract T Match<T>(
+        Func<FilledState, T> onFilled,
+        Func<BlankState, T> onBlank
+    ); 
 
     public static SquareState FromPlayer(Player player)
     {
-        return player.Match(Nought, Cross);
+        return player.Match(Filled(Player.O), Filled(Player.X));
     }
 
-    public override string ToString()
+    public record BlankState : SquareState
     {
-        return _name;
+        public override T Match<T>(Func<FilledState, T> onFilled, Func<BlankState, T> onBlank)
+        {
+            return onBlank(this);
+        }
+
+        public override string ToString() => " ";
+    }
+    
+    public record FilledState(Player player) : SquareState
+    {
+        public override T Match<T>(Func<FilledState, T> onFilled, Func<BlankState, T> onBlank)
+        {
+            return onFilled(this);
+        }
+
+        public override string ToString() => player.ToString();
     }
 }

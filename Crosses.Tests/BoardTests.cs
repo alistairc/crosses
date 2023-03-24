@@ -24,8 +24,8 @@ class BoardTests
             .SetSquareState(0, 0, Player.O)
             .SetSquareState(1, 1, Player.X);
 
-        board.GetSquareState(0, 0).ShouldBe(SquareState.Nought);
-        board.GetSquareState(1, 1).ShouldBe(SquareState.Cross);
+        board.GetSquareState(0, 0).ShouldBe(SquareState.Filled(Player.O));
+        board.GetSquareState(1, 1).ShouldBe(SquareState.Filled(Player.X));
         board.GetSquareState(2, 2).ShouldBe(SquareState.Blank);
     }
 

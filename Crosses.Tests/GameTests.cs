@@ -14,7 +14,7 @@ class GameTests
     public void MakingAMove_ShouldUpdateTheBoard()
     {
         var game = Game.Start().MoveAt(1, 2).ShouldSucceed();
-        game.Board.GetSquareState(1, 2).ShouldBe(SquareState.Nought);
+        game.Board.GetSquareState(1, 2).ShouldBe(SquareState.Filled(Player.O));
     }
 
     [Test]
