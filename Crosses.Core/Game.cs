@@ -31,22 +31,24 @@ public record Game(Board Board, GameState State)
     {
         if (newBoard.IsFull()) return GameState.Complete; // potential bug here, you can win on a full board
 
-        return HasWinner(newBoard, currentTurn).Match(
+        return HasWinner(newBoard).Match(
             onSuccess: GameState.Won,
             onFailure: _ => GameState.InProgress(Player.Other(currentTurn))
         );
     }
 
-    static Result<Player, NoWinner> HasWinner(Board board, Player currentTurn)
+    static Result<Player, NoWinner> HasWinner(Board board)
     {
         //there are more ways to win than this!
         var squaresOnRowOne = Enumerable.Range(0, 2).Select(x => board.GetSquareState(x, 0));
 
         var distinctValues = squaresOnRowOne.Distinct().ToArray();
-        if (distinctValues.Length == 1 && distinctValues[0] != SquareState.Blank)
+        if (distinctValues.Length == 1)
         {
-            //bug - current turn might not match the value.  this is ok-ish until we make this public
-            return Result<Player, NoWinner>.Success(currentTurn);
+            return distinctValues[0].Match(
+                filled => Result<Player, NoWinner>.Success(filled.player),
+                onBlank: _ => Result<Player, NoWinner>.Failure(NoWinner.Value)
+            );
         }
 
         return Result<Player, NoWinner>.Failure(NoWinner.Value);
