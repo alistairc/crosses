@@ -41,12 +41,10 @@ public record Result<TSuccess, TFailure>
             value => Result<T, TFailure>.Success(selector(value)),
             Result<T, TFailure>.Failure);
     }
-
+    
     public Result<T, TFailure> SelectMany<T>(Func<TSuccess, Result<T, TFailure>> selector)
     {
-        return Match(
-            selector,
-            Result<T, TFailure>.Failure);
+        return Select(selector).Match(success => success, Result<T, TFailure>.Failure);
     }
 
     public Result<TResult, TFailure> SelectMany<TMiddle, TResult>(
