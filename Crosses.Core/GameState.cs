@@ -1,6 +1,5 @@
 ﻿namespace Crosses.Core;
 
-//TODO: collapse Game and GameState 
 public abstract record GameState
 {
     public static readonly GameState Complete = new CompleteState();
