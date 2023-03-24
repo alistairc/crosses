@@ -6,15 +6,15 @@ class BoardTests
     public void InitialBoard_ShouldBeBlank()
     {
         var board = new Board();
-        board.GetSquareState(0, 0).ShouldBe(SquareState.Blank);
-        board.GetSquareState(0, 1).ShouldBe(SquareState.Blank);
-        board.GetSquareState(0, 2).ShouldBe(SquareState.Blank);
-        board.GetSquareState(1, 0).ShouldBe(SquareState.Blank);
-        board.GetSquareState(1, 1).ShouldBe(SquareState.Blank);
-        board.GetSquareState(1, 2).ShouldBe(SquareState.Blank);
-        board.GetSquareState(2, 0).ShouldBe(SquareState.Blank);
-        board.GetSquareState(2, 1).ShouldBe(SquareState.Blank);
-        board.GetSquareState(2, 2).ShouldBe(SquareState.Blank);
+        board.GetSquareState(0, 0).ShouldBe(Option<Player>.None);
+        board.GetSquareState(0, 1).ShouldBe(Option<Player>.None);
+        board.GetSquareState(0, 2).ShouldBe(Option<Player>.None);
+        board.GetSquareState(1, 0).ShouldBe(Option<Player>.None);
+        board.GetSquareState(1, 1).ShouldBe(Option<Player>.None);
+        board.GetSquareState(1, 2).ShouldBe(Option<Player>.None);
+        board.GetSquareState(2, 0).ShouldBe(Option<Player>.None);
+        board.GetSquareState(2, 1).ShouldBe(Option<Player>.None);
+        board.GetSquareState(2, 2).ShouldBe(Option<Player>.None);
     }
 
     [Test]
@@ -24,9 +24,9 @@ class BoardTests
             .SetSquareState(0, 0, Player.O)
             .SetSquareState(1, 1, Player.X);
 
-        board.GetSquareState(0, 0).ShouldBe(SquareState.Filled(Player.O));
-        board.GetSquareState(1, 1).ShouldBe(SquareState.Filled(Player.X));
-        board.GetSquareState(2, 2).ShouldBe(SquareState.Blank);
+        board.GetSquareState(0, 0).ShouldBe(Option<Player>.Some(Player.O));
+        board.GetSquareState(1, 1).ShouldBe(Option<Player>.Some(Player.X));
+        board.GetSquareState(2, 2).ShouldBe(Option<Player>.None);
     }
 
     [Test]

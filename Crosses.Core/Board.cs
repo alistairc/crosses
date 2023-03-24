@@ -6,8 +6,8 @@ public record Board
 {
     public static readonly Board Blank = new();
 
-    ImmutableArray<SquareState> State { get; init; } =
-        ImmutableArray.CreateRange(Enumerable.Repeat(SquareState.Blank, 9));
+    ImmutableArray<Option<Player>> State { get; init; } =
+        ImmutableArray.CreateRange(Enumerable.Repeat(Option<Player>.None, 9));
 
     public virtual bool Equals(Board? other)
     {
@@ -16,7 +16,7 @@ public record Board
         return other != null && Enumerable.SequenceEqual(other.State, State);
     }
 
-    public SquareState GetSquareState(int x, int y)
+    public Option<Player> GetSquareState(int x, int y)
     {
         return State[IndexForCoord(x, y)];
     }
@@ -25,13 +25,13 @@ public record Board
     {
         var index = IndexForCoord(x, y);
         var mutable = State.ToBuilder();
-        mutable[index] = SquareState.FromPlayer(player);
+        mutable[index] = Option<Player>.Some(player);
         return new Board { State = mutable.ToImmutable() };
     }
 
     public bool IsFull()
     {
-        return !State.Any(square => square == SquareState.Blank);
+        return !State.Any(square => square == Option<Player>.None);
     }
 
     static int IndexForCoord(int x, int y)

@@ -11,7 +11,7 @@ public record Game(Board Board, GameState State)
     {
         return State.Match(inProgress =>
             {
-                if (Board.GetSquareState(x, y) != SquareState.Blank)
+                if (Board.GetSquareState(x, y) != Option<Player>.None)
                 {
                     return Result<Game, InvalidMove>.Failure(new InvalidMove(inProgress.NextTurn, x, y));
                 }
@@ -46,8 +46,8 @@ public record Game(Board Board, GameState State)
         if (distinctValues.Length == 1)
         {
             return distinctValues[0].Match(
-                filled => Result<Player, NoWinner>.Success(filled.player),
-                onBlank: _ => Result<Player, NoWinner>.Failure(NoWinner.Value)
+                player => Result<Player, NoWinner>.Success(player),
+                onNone: () => Result<Player, NoWinner>.Failure(NoWinner.Value)
             );
         }
 
