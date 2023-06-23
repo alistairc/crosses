@@ -2,3 +2,4 @@
     you can only make a move when in progress
     ergonomics of this might be tricky though  
 - Implement correct winning rules
+- Maybe some testing extension methods for Option
